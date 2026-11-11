@@ -20,7 +20,9 @@ jobs:
           java-version: '17'
 
       - name: Android SDK einrichten
-        uses: subosito/android-action@v2
+        uses: android-actions/setup-android@v3
+        with:
+          accept-license: true
 
       - name: Gradle Wrapper ausführbar machen
         run: chmod +x gradlew
@@ -35,4 +37,3 @@ jobs:
         with:
           name: app-debug-apk
           path: android_app/app/build/outputs/apk/debug/*.apk
-          
