@@ -21,8 +21,6 @@ jobs:
 
       - name: Android SDK einrichten
         uses: android-actions/setup-android@v3
-        with:
-          accept-android-sdk-licenses: true
 
       - name: Gradle Wrapper ausführbar machen
         run: chmod +x gradlew
