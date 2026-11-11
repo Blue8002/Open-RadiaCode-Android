@@ -13,14 +13,11 @@ jobs:
       - name: Code auschecken
         uses: actions/checkout@v4
 
-      - name: Java (JDK 11) einrichten
+      - name: Java (JDK 17) einrichten
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
-
-      - name: Android SDK einrichten
-        uses: android-actions/setup-android@v3
+          java-version: '17'
 
       - name: Gradle Wrapper ausführbar machen
         run: chmod +x gradlew
