@@ -1,0 +1,35 @@
+.github/workflows/build-apk.yml
+name: Build Android APK
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Ermöglicht das manuelle Starten über den Actions-Tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: Java (JDK 17) einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Gradle Wrapper ausführbar machen
+        run: chmod +x gradlew
+        working-directory: ./android_app
+
+      - name: APK mit Gradle kompilieren (Debug)
+        run: ./gradlew assembleDebug
+        working-directory: ./android_app
+
+      - name: APK-Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk
+          path: android_app/app/build/outputs/apk/debug/*.apk
