@@ -13,16 +13,16 @@ jobs:
       - name: Code auschecken
         uses: actions/checkout@v4
 
-      - name: Java (JDK 17) einrichten
+      - name: Java (JDK 11) einrichten
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'
 
       - name: Android SDK und NDK einrichten
         uses: android-actions/setup-android@v3
         with:
-          packages: 'platform-tools platforms;android-34 build-tools;34.0.0 ndk;25.2.9519653'
+          packages: 'platform-tools platforms;android-33 build-tools;33.0.2'
           accept-android-sdk-licenses: true
 
       - name: Gradle Wrapper ausführbar machen
@@ -30,7 +30,7 @@ jobs:
         working-directory: ./android_app
 
       - name: APK mit Gradle kompilieren (Debug)
-        run: ./gradlew assembleDebug --stacktrace
+        run: ./gradlew clean assembleDebug --info
         working-directory: ./android_app
 
       - name: APK-Artefakt hochladen
