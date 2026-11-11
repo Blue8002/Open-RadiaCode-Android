@@ -19,18 +19,15 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Android SDK und NDK einrichten
+      - name: Android SDK einrichten
         uses: android-actions/setup-android@v3
-        with:
-          packages: 'platform-tools platforms;android-33 build-tools;33.0.2'
-          accept-android-sdk-licenses: true
 
       - name: Gradle Wrapper ausführbar machen
         run: chmod +x gradlew
         working-directory: ./android_app
 
       - name: APK mit Gradle kompilieren (Debug)
-        run: ./gradlew clean assembleDebug --info
+        run: ./gradlew assembleDebug
         working-directory: ./android_app
 
       - name: APK-Artefakt hochladen
