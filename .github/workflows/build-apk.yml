@@ -19,7 +19,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Gradle Wrapper ausfuehrbar machen
+      - name: Android SDK einrichten
+        uses: android-actions/setup-android@v3
+
+      - name: Gradle Wrapper ausführbar machen
         run: chmod +x gradlew
         working-directory: ./android_app
 
